@@ -1,0 +1,14 @@
+
+5. If an environment does not currently engage in solid requirements engineering practices, should tools be introduced?
+- On the one hand, requirements engineering tools can help to improve the quality and completeness of requirements, as well as the efficiency and effectiveness of the requirements gathering and analysis process. On the other hand, requirements engineering tools can be expensive and complex, and they may not be effective in an environment that does not have the necessary foundation in requirements engineering practices. 
+- Whether or not to introduce requirements engineering tools is a decision that should be made on a case-by-case basis. There is no one-size-fits-all answer.
+- Here are some factors to consider when deciding whether or not to introduce requirements engineering tools in an environment that does not currently engage in solid requirements engineering practices:
+	+ The cost of the tools: Requirements engineering tools can be expensive to purchase and maintain. This can be a barrier for small businesses and organizations with limited budgets.
+	+ The complexity of the tools: Some requirements engineering tools can be complex and difficult to use. This can lead to errors in the requirements gathering and analysis process.
+	+ The level of support for requirements engineering in the organization: If the organization does not have a strong culture of requirements engineering, it is unlikely that requirements engineering tools will be effective.
+	+ The readiness of the organization to adopt new tools and technologies: If the organization is not ready to adopt new tools and technologies, it is unlikely that requirements engineering tools will be successful.
+	+ If the organization is serious about improving its requirements engineering practices, then introducing requirements engineering tools may be a good option. However, it is important to carefully consider the factors listed above before making a decision.
+
+6. What sort of problems might you find through a traceability matrix that you might not see without one?
+
+7. How is AI being proposed for knowledge acquisition and representation in requirements specifications?
