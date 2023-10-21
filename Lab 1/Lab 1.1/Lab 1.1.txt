@@ -10,5 +10,11 @@
 	+ If the organization is serious about improving its requirements engineering practices, then introducing requirements engineering tools may be a good option. However, it is important to carefully consider the factors listed above before making a decision.
 
 6. What sort of problems might you find through a traceability matrix that you might not see without one?
+Here are some problems that can be identified through a traceability matrix that might not be easily seen without one:
+- Incomplete or Missing Requirements: A traceability matrix allows project managers to identify any missing or incomplete requirements. By cross-referencing the matrix with the project's requirements documentation, it becomes easier to spot any gaps or inconsistencies.
+- Scope Creep: Scope creep refers to the uncontrolled expansion of project scope beyond its original boundaries. A traceability matrix helps in managing scope by ensuring that all project deliverables are linked to specific requirements. If new features or changes are requested, the traceability matrix can be used to assess their impact on existing requirements and determine if they fall within the project's scope.
+- Lack of Compliance: Traceability matrices can be used to ensure compliance with regulatory standards and industry best practices. By mapping requirements to relevant regulations or standards, project managers can easily identify any gaps or non-compliance issues .
+- Risk Management: A traceability matrix can help in identifying potential risks and their impact on project requirements. By establishing relationships between risks and requirements, project managers can assess the potential consequences of risks and take appropriate mitigation measures.
+- Efficiency and Rework: A well-defined traceability matrix can help in improving project efficiency and minimizing rework. By tracking the progress of requirements and their associated work artifacts, project managers can identify any bottlenecks or inefficiencies in the project workflow. This allows for timely intervention and corrective actions to be taken, reducing the need for rework .
 
 7. How is AI being proposed for knowledge acquisition and representation in requirements specifications?
