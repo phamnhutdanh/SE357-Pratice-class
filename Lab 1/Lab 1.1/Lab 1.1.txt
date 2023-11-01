@@ -1,0 +1,22 @@
+1) What criteria should be used in choosing an appropriate requirements engineering tool? 
+
+- Compatibility with the Processes of Your Organization: Make sure the tool complies with the criteria engineering procedures and techniques used by your company. Your unique method for obtaining, recording, and organizing requirements should be supported by it.
+
+- Ease of Use: The tool should be simple to use and shouldn't add extra layers of complexity to the requirements engineering procedure. If a tool is too complicated to use, the project team may become resistant to use.
+
+- Cooperation and Communication: Seek for resources that facilitate stakeholder collaboration. In addition to allowing for traceability and version control, they should facilitate real-time communication, feedback, and requirement discussion.
+
+- Customization: It's crucial to have the option to tailor the tool to your own requirements. Specific fields, templates, and procedures for handling requirements may be needed for various projects and sectors.
+
+- Traceability: Throughout the whole development process, requirements should be able to be tracked down using a competent requirements engineering tool. This makes it easier to guarantee that all standards are met and that modifications are monitored.
+
+- Integration: Take into account the tool's compatibility with the systems and other software development tools your company employs, including project management, version control, and testing tools. Your development process may be streamlined with seamless integration.
+
+- Support for multiple Types of Requirements: Ensure that the tool can handle multiple types of requirements, such as functional, non-functional, and domain-specific requirements, and that it supports the depiction of both textual and visual requirements.
+
+- Finding solutions that can provide reports and documentation for many stakeholders is important when it comes to reporting and documenting. This is especially crucial for regulatory and compliance reasons.
+
+- Security and Access Control: It's critical to safeguard private and sensitive data. The tool should have strong security measures and access restrictions to limit who may see, alter, or remove requirements.
+
+- Cost and Licensing: Consider the entire cost of ownership, which includes licensing, and any other expenses related to the tool. Make sure the cost is within your means.
+
