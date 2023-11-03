@@ -1,0 +1,14 @@
+@startuml
+|Supplier|
+start
+:Click on an imported request;
+|System|
+:Load imported request details;
+|Supplier|
+if (Change status imported?) then (Accepted)
+|System|
+:The imported request status change to accepted;
+else (Cancel)
+endif
+stop
+@enduml

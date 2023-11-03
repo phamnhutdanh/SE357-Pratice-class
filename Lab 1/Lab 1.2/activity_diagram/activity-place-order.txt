@@ -1,0 +1,20 @@
+@startuml
+|Customer|
+start
+:Go to cart and click "Place order" button;
+|System|
+:Load order details;
+|Customer|
+:Review order;
+fork
+  :Choose payment method;
+fork again
+  :Choose delivery address;
+end merge
+if (Confirm order?) then (Yes)
+|System|
+:The order request status change to pending;
+else (No)
+endif
+stop
+@enduml

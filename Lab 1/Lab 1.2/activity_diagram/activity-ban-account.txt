@@ -1,0 +1,18 @@
+@startuml
+|Admin|
+start
+:Click on an account;
+|System|
+:Load account details;
+|Admin|
+:Click "Ban account" button;
+|System|
+:Load confirm dialog;
+|Admin|
+if (Accept?) then (Yes)
+|System|
+else (No)
+:Show error message;
+endif
+stop
+@enduml

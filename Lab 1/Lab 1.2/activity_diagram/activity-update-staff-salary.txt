@@ -1,0 +1,17 @@
+@startuml
+|Shop's owner|
+start
+:Click on an staff information;
+:Click on "Update salary" button;
+|System|
+:Load input form;
+|Shop's owner|
+:Enter value;
+|System|
+if (Validate) then (Valid)
+:Update salary;
+else (Not valid)
+:Show error message;
+endif
+stop
+@enduml

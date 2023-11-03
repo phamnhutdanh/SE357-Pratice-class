@@ -1,0 +1,12 @@
+@startuml
+|Shop's owner|
+start
+:Click "Report" button;
+|System|
+:Load report form selection;
+|Shop's owner|
+:Choose the report want to display;
+|System|
+:Display items in views;
+stop
+@enduml

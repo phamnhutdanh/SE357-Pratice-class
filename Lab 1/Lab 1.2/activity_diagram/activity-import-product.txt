@@ -1,0 +1,19 @@
+@startuml
+|Shop's owner|
+start
+:Click "Import product" button;
+|System|
+:Load input form;
+|Shop's owner|
+:Enter information and choose supplier;
+if (Confirm import?) then (Yes)
+|System|
+if (Validate information) then (Valid)
+:Change status to pending;
+else (Not valid)
+:Show error message;
+endif
+else (No)
+endif
+stop
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+|Customer|
+start
+:Click on an item cart;
+:Enter new amount;
+|System|
+if (Validate amount) then (Valid)
+:Update amount;
+else (Not valid)
+:Show error message;
+endif
+stop
+@enduml

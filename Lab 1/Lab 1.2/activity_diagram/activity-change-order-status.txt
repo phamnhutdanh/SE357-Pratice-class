@@ -1,0 +1,14 @@
+@startuml
+|Shop|
+start
+:Click on an order request;
+|System|
+:Load order request details;
+|Shop|
+if (Change status request?) then (Accepted)
+|System|
+:The order request status change to accepted;
+else (Cancel)
+endif
+stop
+@enduml

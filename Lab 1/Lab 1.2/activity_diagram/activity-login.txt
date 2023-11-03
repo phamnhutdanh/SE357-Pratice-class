@@ -1,0 +1,13 @@
+@startuml
+|User|
+start
+:Fill information form;
+:Click "Login" button;
+|System|
+if (Valid?) then (Valid)
+  :Grant permission login;
+else (Not valid)
+  :Show error message;
+endif
+stop
+@enduml
