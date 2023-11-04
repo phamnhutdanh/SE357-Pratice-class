@@ -1,0 +1,15 @@
+@startuml
+
+actor Admin 
+boundary AccountManageView 
+control AccountControl
+entity Account 
+
+Admin -> AccountManageView: 1. Click "Account" button
+AccountManageView -> AccountControl: 2. Send message
+AccountControl -> Account: 3. Get list of Accounts
+Account -> AccountControl: 4. Send list of Accounts
+AccountControl -> AccountManageView: 5. Send list of Accounts
+AccountManageView -> AccountManageView: 6. Display list of Accounts
+
+@enduml
