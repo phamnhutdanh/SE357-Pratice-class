@@ -1,0 +1,16 @@
+@startuml
+|Customer|
+start
+:Click on an item cart;
+:Click on "Delete" button;
+|System|
+:Load confirm dialog;
+|Customer|
+if (Accept?) then (Yes)
+|System|
+:Delete item cart;
+else (No)
+|System|
+endif
+stop
+@enduml

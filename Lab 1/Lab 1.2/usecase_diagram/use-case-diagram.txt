@@ -1,0 +1,81 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Customer" as Customer
+actor "Supplier" as Supplier
+actor "Shop's owner" as Shop
+actor "Admin" as Admin
+actor "System account" as User
+
+rectangle "Management a chain of stores system" {
+  usecase "Login" as UC_Login
+  usecase "SignUp" as UC_SignUp
+
+  usecase "Browse product" as UC_BrowseProduct
+  usecase "Search/Filter product" as UC_Search
+  usecase "View product" as UC_ViewProduct
+
+  usecase "Place order" as UC_PlaceOrder
+  usecase "Rating shop" as UC_Rating
+  usecase "Print invoice" as UC_Invoice
+  usecase "Choose payment method" as UC_Payment
+  usecase "Choose address" as UC_Address
+
+  usecase "Cart management" as UC_CartManagement
+
+  usecase "Product management" as UC_ProductManagement
+  usecase "Staff management" as UC_StaffManagement
+  usecase "Add/Edit staff info" as UC_AddEditStaff
+  usecase "Add/Edit salary" as UC_Salary
+
+  usecase "Order management" as UC_ChangeOrderStatus
+
+  usecase "Accounts management" as UC_AccountManagement 
+  usecase "Ban account" as UC_BanAccount
+  usecase "Revenue statistics" as UC_Revenue
+  usecase "Create Shop/Supllier account" as UC_Acc1
+  usecase "CRUD account lists" as UC_AccList
+
+  usecase "Info management" as UC_InfoManagement
+
+  usecase "Provide product" as UC_ProvideProduct
+
+}
+
+UC_Login <----- User
+UC_InfoManagement <-- User
+
+Customer ---> UC_BrowseProduct
+Customer ---> UC_PlaceOrder
+Customer ---> UC_CartManagement
+Customer ---> UC_SignUp
+Customer ---> UC_Login
+Customer ---> UC_InfoManagement 
+
+UC_ProductManagement <----- Shop
+UC_StaffManagement <-- Shop
+UC_ChangeOrderStatus <---- Shop
+
+Admin ---> UC_AccountManagement 
+Admin ---> UC_BanAccount
+Admin ---> UC_Revenue 
+Admin --> UC_Login 
+
+UC_ProvideProduct <----- Supplier 
+
+UC_BrowseProduct ...> UC_Search: <<include>> 
+UC_BrowseProduct ...> UC_ViewProduct: <<include>> 
+UC_PlaceOrder ....> UC_Address: <<include>> 
+UC_PlaceOrder ....> UC_Payment: <<include>>
+UC_PlaceOrder <.... UC_Invoice: <<extend>>
+UC_PlaceOrder <.... UC_Rating : <<extend>>
+UC_AddEditStaff <.... UC_StaffManagement : <<include>>
+UC_Salary <.... UC_StaffManagement : <<include>>
+
+UC_AccountManagement ...> UC_Acc1: <<include>> 
+UC_AccountManagement ...> UC_AccList: <<include>> 
+
+Shop -|> User
+User <|- Supplier
+@enduml

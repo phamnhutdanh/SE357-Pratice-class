@@ -1,0 +1,9 @@
+@startuml
+|Customer|
+start
+:Click on an product;
+:Choose size and quantity;
+:Click "Add to cart" button;
+|System|
+stop
+@enduml

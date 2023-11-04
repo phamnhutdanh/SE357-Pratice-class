@@ -1,0 +1,17 @@
+@startuml
+|User|
+start
+:Click on edit account;
+:Click "Update account";
+|System|
+:Load update input form;
+|User|
+:Enter information;
+|System|
+if (Validate information) then (Valid)
+:Update account;
+else (Not valid)
+:Show error message;
+endif
+stop
+@enduml

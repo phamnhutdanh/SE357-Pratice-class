@@ -1,0 +1,8 @@
+@startuml
+|Admin|
+start
+:Click on an account;
+|System|
+:Load account details;
+stop
+@enduml

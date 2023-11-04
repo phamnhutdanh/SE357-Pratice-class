@@ -1,0 +1,17 @@
+@startuml
+|Shop's owner|
+start
+:Click on an product item;
+:Click on "Update product" button;
+|System|
+:Load input form;
+|Shop's owner|
+:Enter information;
+|System|
+if (Validate) then (Valid)
+:Update product;
+else (Not valid)
+:Show error message;
+endif
+stop
+@enduml

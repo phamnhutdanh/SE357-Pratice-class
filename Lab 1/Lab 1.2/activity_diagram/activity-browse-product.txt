@@ -1,0 +1,12 @@
+@startuml
+|Customer|
+start
+:Click on search/filter button;
+|System|
+
+repeat :Search item;
+backward:Not found;
+repeat while (Found?)
+:Display item product;
+stop
+@enduml

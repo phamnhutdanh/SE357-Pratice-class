@@ -1,0 +1,19 @@
+@startuml
+|Customer|
+start
+repeat
+:Fill information form;
+:Click "Sign up" button;
+|System|
+backward:Show error;
+repeat while (Validate information) is (no) 
+-> yes;
+
+if (Is account exists?) then (Not exists)
+  :Create new account;
+  :Grant permission;
+else (Exists)
+  :Show error message;
+endif
+stop
+@enduml
