@@ -1,0 +1,29 @@
+@startuml
+
+actor Admin 
+boundary StoreManageView 
+control StoreControl
+entity Store 
+
+StoreControl -> Store: 1. Get list of Stores
+StoreManageView -> StoreManageView: 2. Display list of Stores
+Admin -> StoreManageView: 3. Choose action
+
+opt InsertNewStore:
+    ref over Admin, StoreManageView, StoreControl, Store: Sequence Insert New Store
+end   
+
+opt UpdateStore:
+    ref over Admin, StoreManageView, StoreControl, Store: Sequence Update Store
+end  
+
+opt DeleteStore:
+    ref over Admin, StoreManageView, StoreControl, Store: Sequence Delete Store
+end  
+
+opt SearchStore:
+    ref over Admin, StoreManageView, StoreControl, Store: Sequence Search Store
+end  
+
+
+@enduml

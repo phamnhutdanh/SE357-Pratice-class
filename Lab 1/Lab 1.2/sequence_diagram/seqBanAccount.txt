@@ -1,0 +1,39 @@
+@startuml
+
+actor Admin 
+boundary AccountManageView 
+control AccountControl
+entity Account 
+
+AccountControl -> Account: 1. Get list of Accounts
+AccountManageView -> AccountManageView: 2. Display list of Accounts
+Admin -> AccountManageView: 3. Enter account's keywords
+
+AccountManageView -> AccountControl: 4. Send Account's keywords
+AccountControl -> Account: 5. Send Account's keywords
+Account -> Account: 6. Validate keyword
+
+Account --> AccountControl: 7. Successful notification
+AccountControl -> AccountManageView: 8. Send message
+AccountManageView -> AccountManageView: 9. Display Account with keywords
+
+Admin -> AccountManageView: 10. Click on Account
+Admin -> AccountManageView: 11. Click on "Ban Button"
+
+AccountManageView -> AccountControl: 12. Send message to Control
+AccountControl -> AccountManageView: 13. Show "Accept?" message
+
+alt Click "Yes" Button
+    Admin -> AccountManageView: 14. Click Yes
+    AccountManageView -> AccountControl: 15. Send message to Control
+    AccountControl -> Account: 16. Ban account
+    Account -> Account: 17. Validate 
+    Account -> AccountControl: 18. Successful message
+    AccountControl -> AccountManageView: 19. Successful message
+else Click "No" Button
+    AccountManageView -> AccountManageView: 20. Show notification
+
+end
+
+
+@enduml
