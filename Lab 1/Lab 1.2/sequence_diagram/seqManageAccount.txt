@@ -1,0 +1,29 @@
+@startuml
+
+actor Admin 
+boundary AccountManageView 
+control AccountControl
+entity Account 
+
+AccountControl -> Account: 1. Get list of Accounts
+AccountManageView -> AccountManageView: 2. Display list of Accounts
+Admin -> AccountManageView: 3. Choose action
+
+opt InsertNewAccount:
+    ref over Admin, AccountManageView, AccountControl, Account: Sequence Insert New Account
+end   
+
+opt UpdateAccount:
+    ref over Admin, AccountManageView, AccountControl, Account: Sequence Update Account
+end  
+
+opt DeleteAccount:
+    ref over Admin, AccountManageView, AccountControl, Account: Sequence Delete Account
+end  
+
+opt SearchAccount:
+    ref over Admin, AccountManageView, AccountControl, Account: Sequence Search Account
+end  
+
+
+@enduml

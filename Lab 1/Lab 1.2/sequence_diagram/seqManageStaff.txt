@@ -1,0 +1,29 @@
+@startuml
+
+actor ShopOwner 
+boundary StaffManageView 
+control StaffControl
+entity Staff 
+
+StaffControl -> Staff: 1. Get list of Staffs
+StaffManageView -> StaffManageView: 2. Display list of Staffs
+ShopOwner -> StaffManageView: 3. Choose action
+
+opt InsertNewStaff:
+    ref over ShopOwner, StaffManageView, StaffControl, Staff: Sequence Insert New Staff
+end   
+
+opt UpdateStaff:
+    ref over ShopOwner, StaffManageView, StaffControl, Staff: Sequence Update Staff
+end  
+
+opt DeleteStaff:
+    ref over ShopOwner, StaffManageView, StaffControl, Staff: Sequence Delete Staff
+end  
+
+opt SearchStaff:
+    ref over ShopOwner, StaffManageView, StaffControl, Staff: Sequence Search Staff
+end  
+
+
+@enduml
