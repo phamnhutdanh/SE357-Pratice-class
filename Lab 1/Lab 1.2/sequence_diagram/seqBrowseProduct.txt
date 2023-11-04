@@ -1,0 +1,23 @@
+@startuml
+
+actor Customer 
+boundary ProductView 
+control ProductControl
+entity Product 
+
+Customer -> ProductView: 1. Click to open Product View
+ProductView -> ProductView : 2. Display Product View
+Customer -> ProductView : 3. Enter product's keywords
+ProductView -> ProductView : 4. Display list of products
+
+alt Invalid Keyword
+    ProductView -> ProductView : 5. Display not found notification
+else Valid Keyword
+    ProductView -> ProductControl: 6. Send product's keywords
+    ProductControl -> Product: 7. Send product's keywords
+    Product -> Product: 8. Validate keyword
+    Product --> ProductControl: 9. Successful notification
+    ProductControl -> ProductView: 10. Send message
+    ProductView -> ProductView: 11. Display product with keywords
+end
+@enduml
