@@ -13,19 +13,19 @@ Store -- Product: contains
 Supplier -- Product: provides
 ShopOwner -- Product: manages
 Order -r- Product: contains
-Order -r- Customer
-Order -r- ShopOwner
+Order -- Customer: has
+Order -- ShopOwner: manages
 
 Customer -- Store: shops at
 ShopOwner -- Store: works at
 Admin -- Store: manages
-
 
 class Store {
   - storeId: int
   - storeName: String
   - address: String
   - phone: String
+  - productId: String
 }
 
 class Product {
@@ -66,6 +66,7 @@ class Customer {
 class ShopOwner {
   - shopOwnerId: String
   - shopOwnerName: String
+  - storeId: String
   + manageProduct(): void
   + manageStaff(): void
   + manageOrder(): void
