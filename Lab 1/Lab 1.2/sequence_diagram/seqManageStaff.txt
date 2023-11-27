@@ -10,19 +10,55 @@ StaffManageView -> StaffManageView: 2. Display list of Staffs
 ShopOwner -> StaffManageView: 3. Choose action
 
 opt InsertNewStaff:
-    ref over ShopOwner, StaffManageView, StaffControl, Staff: Sequence Insert New Staff
+    ShopOwner -> StaffManageView: Open Staff Management View
+    StaffManageView -> StaffManageView: Display form to enter staff details
+    ShopOwner -> StaffControl: Request to insert new staff
+    StaffControl -> StaffControl: Validate input
+    StaffControl -> StaffControl: Generate staff ID
+    StaffControl -> Staff: Create new staff object
+    StaffControl -> Staff: Set staff details
+    StaffControl -> StaffControl: Save staff to database
+    StaffControl --> ShopOwner: Notify success/failure
 end   
 
 opt UpdateStaff:
-    ref over ShopOwner, StaffManageView, StaffControl, Staff: Sequence Update Staff
+    ShopOwner -> StaffManageView: Open Staff Management View
+    StaffManageView -> StaffManageView: Display list of accounts
+    ShopOwner -> StaffManageView: Select staff to update
+    StaffManageView -> StaffControl: Request to update staff
+    StaffControl -> StaffControl: Validate input
+    StaffControl -> Staff: Retrieve existing staff details
+    StaffControl -> StaffManageView: Display staff details for editing
+    ShopOwner -> StaffControl: Modify staff details
+    StaffControl -> StaffControl: Validate modified input
+    StaffControl -> Staff: Update staff details
+    StaffControl -> StaffControl: Save updated staff to database
+    StaffControl --> ShopOwner: Notify success/failure
 end  
 
 opt DeleteStaff:
-    ref over ShopOwner, StaffManageView, StaffControl, Staff: Sequence Delete Staff
+    ShopOwner -> StaffManageView: Open Staff Management View
+    StaffManageView -> StaffManageView: Display list of accounts
+    ShopOwner -> StaffManageView: Select staff to delete
+    StaffManageView -> StaffControl: Request to delete staff
+    StaffControl -> StaffControl: Confirm staff deletion
+    StaffControl -> Staff: Retrieve staff details for confirmation
+    StaffControl -> StaffManageView: Display staff details for confirmation
+    ShopOwner -> StaffControl: Confirm staff deletion
+    StaffControl -> StaffControl: Delete staff
+    StaffControl -> StaffControl: Save updated staff list to database
+    StaffControl --> ShopOwner: Notify success/failure
 end  
 
 opt SearchStaff:
-    ref over ShopOwner, StaffManageView, StaffControl, Staff: Sequence Search Staff
+    ShopOwner -> StaffManageView: Open Staff Management View
+    StaffManageView -> StaffManageView: Display search interface
+    ShopOwner -> StaffManageView: Enter search criteria
+    StaffManageView -> StaffControl: Request to search accounts
+    StaffControl -> StaffControl: Validate search criteria
+    StaffControl -> StaffControl: Search accounts in the database
+    StaffControl --> StaffManageView: Return search results
+    StaffManageView -> StaffManageView: Display search results
 end  
 
 
