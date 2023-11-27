@@ -1,7 +1,7 @@
 @startuml
-
 actor Admin 
 boundary AccountManageView 
+boundary UserAccount
 control AccountControl
 entity Account 
 
@@ -30,10 +30,9 @@ alt Click "Yes" Button
     Account -> Account: 17. Validate 
     Account -> AccountControl: 18. Successful message
     AccountControl -> AccountManageView: 19. Successful message
+    AccountControl -> UserAccount: 20. Notify to user account
 else Click "No" Button
-    AccountManageView -> AccountManageView: 20. Show notification
+    AccountManageView -> AccountManageView: 21. Show notification
 
 end
-
-
 @enduml
