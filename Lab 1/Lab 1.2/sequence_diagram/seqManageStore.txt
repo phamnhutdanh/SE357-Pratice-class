@@ -10,19 +10,55 @@ StoreManageView -> StoreManageView: 2. Display list of Stores
 Admin -> StoreManageView: 3. Choose action
 
 opt InsertNewStore:
-    ref over Admin, StoreManageView, StoreControl, Store: Sequence Insert New Store
+    Admin -> StoreManageView: Open Store Management View
+    StoreManageView -> StoreManageView: Display form to enter store details
+    Admin -> StoreControl: Request to insert new store
+    StoreControl -> StoreControl: Validate input
+    StoreControl -> StoreControl: Generate store ID
+    StoreControl -> Store: Create new store object
+    StoreControl -> Store: Set store details
+    StoreControl -> StoreControl: Save store to database
+    StoreControl --> Admin: Notify success/failure
 end   
 
 opt UpdateStore:
-    ref over Admin, StoreManageView, StoreControl, Store: Sequence Update Store
+    Admin -> StoreManageView: Open Store Management View
+    StoreManageView -> StoreManageView: Display list of accounts
+    Admin -> StoreManageView: Select store to update
+    StoreManageView -> StoreControl: Request to update store
+    StoreControl -> StoreControl: Validate input
+    StoreControl -> Store: Retrieve existing store details
+    StoreControl -> StoreManageView: Display store details for editing
+    Admin -> StoreControl: Modify store details
+    StoreControl -> StoreControl: Validate modified input
+    StoreControl -> Store: Update store details
+    StoreControl -> StoreControl: Save updated store to database
+    StoreControl --> Admin: Notify success/failure
 end  
 
 opt DeleteStore:
-    ref over Admin, StoreManageView, StoreControl, Store: Sequence Delete Store
+    Admin -> StoreManageView: Open Store Management View
+    StoreManageView -> StoreManageView: Display list of accounts
+    Admin -> StoreManageView: Select store to delete
+    StoreManageView -> StoreControl: Request to delete store
+    StoreControl -> StoreControl: Confirm store deletion
+    StoreControl -> Store: Retrieve store details for confirmation
+    StoreControl -> StoreManageView: Display store details for confirmation
+    Admin -> StoreControl: Confirm store deletion
+    StoreControl -> StoreControl: Delete store
+    StoreControl -> StoreControl: Save updated store list to database
+    StoreControl --> Admin: Notify success/failure
 end  
 
 opt SearchStore:
-    ref over Admin, StoreManageView, StoreControl, Store: Sequence Search Store
+    Admin -> StoreManageView: Open Store Management View
+    StoreManageView -> StoreManageView: Display search interface
+    Admin -> StoreManageView: Enter search criteria
+    StoreManageView -> StoreControl: Request to search accounts
+    StoreControl -> StoreControl: Validate search criteria
+    StoreControl -> StoreControl: Search accounts in the database
+    StoreControl --> StoreManageView: Return search results
+    StoreManageView -> StoreManageView: Display search results
 end  
 
 
