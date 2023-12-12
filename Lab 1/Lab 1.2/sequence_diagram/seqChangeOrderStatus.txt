@@ -1,0 +1,18 @@
+@startuml
+
+actor ShopOwner
+boundary OrderManageView
+control OrderControl
+entity Order
+
+OrderControl -> Order: 1. Get current order details
+OrderManageView -> OrderManageView: 2. Display current order status
+ShopOwner -> OrderManageView: 3. Click "Change Order Status" button
+OrderManageView -> OrderManageView: 4. Load available order statuses
+ShopOwner -> OrderManageView: 5. Select new order status
+OrderManageView -> OrderControl: 6. Request change of order status to selected status
+OrderControl -> Order: 7. Change order status
+OrderControl -> OrderManageView: 8. Update order status in the database
+OrderManageView -> OrderManageView: 9. Show "Order Status Changed" message
+
+@enduml
