@@ -1,0 +1,20 @@
+@startuml
+|Admin|
+start
+:Click on an shop account;
+|System|
+:Loading list of product and order from this shop;
+|Admin|
+:Click on "Update" button;
+|System|
+:Load input form;
+|Admin|
+:Enter information;
+|System|
+if (Validate) then (Valid)
+:Update product/order;
+else (Not valid)
+:Show error message;
+endif
+stop
+@enduml

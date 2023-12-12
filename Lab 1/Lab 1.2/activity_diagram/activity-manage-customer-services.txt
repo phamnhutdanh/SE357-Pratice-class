@@ -1,0 +1,20 @@
+@startuml
+|Admin|
+start
+:Click on "Manage Customer Services" button;
+|System|
+:Loading list of message from customers;
+|Admin|
+:Choose an message to reply;
+|System|
+:Load input form;
+|Admin|
+:Enter information;
+|System|
+if (Validate) then (Valid)
+:Send message to customers;
+else (Not valid)
+:Show error message;
+endif
+stop
+@enduml

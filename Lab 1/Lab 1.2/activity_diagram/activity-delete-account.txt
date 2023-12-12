@@ -5,15 +5,12 @@ start
 |System|
 :Load account details;
 |Admin|
-:Click "Ban account" button;
+:Click "Delete account";
 |System|
-:Load confirm dialog;
-|Admin|
-if (Accept?) then (Yes)
+if (Confirm?) then (Yes)
+:Delete account;
 :Send message to user email;
-|System|
 else (No)
-:Show error message;
 endif
 stop
 @enduml

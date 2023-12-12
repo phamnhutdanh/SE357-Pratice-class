@@ -1,0 +1,20 @@
+@startuml
+|Admin|
+start
+:Click on an supplier account;
+|System|
+:Loading list of supplies and information from this supplier;
+|Admin|
+:Click on "Update" button;
+|System|
+:Load input form;
+|Admin|
+:Enter information;
+|System|
+if (Validate) then (Valid)
+:Update supplies/information;
+else (Not valid)
+:Show error message;
+endif
+stop
+@enduml
