@@ -1,0 +1,13 @@
+@startuml
+|Admin|
+start
+:Click "Send notice";
+:Enter message;
+:Choose type of account to send this notice;
+|System|
+if (Message sent?) then (Yes)
+else (No)
+:Show error message;
+endif
+stop
+@enduml

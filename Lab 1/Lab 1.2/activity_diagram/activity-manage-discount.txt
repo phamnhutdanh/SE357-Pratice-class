@@ -1,0 +1,20 @@
+@startuml
+|Admin|
+start
+:Click on "Manage Discount" button;
+|System|
+:Loading list of product discount;
+|Admin|
+:Choose an product to add/update discount;
+|System|
+:Load input form;
+|Admin|
+:Enter information;
+|System|
+if (Validate) then (Valid)
+:Add/Update discount successful;
+else (Not valid)
+:Show error message;
+endif
+stop
+@enduml

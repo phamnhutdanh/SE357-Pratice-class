@@ -1,0 +1,16 @@
+@startuml
+|Admin|
+start
+:Click "Create Account";
+:Choose account type as supplier;
+|System|
+:Load input form;
+|Admin|
+:Enter information;
+|System|
+if (Validate information) then (Valid)
+else (Not valid)
+:Show error message;
+endif
+stop
+@enduml
