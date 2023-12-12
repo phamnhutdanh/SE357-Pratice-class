@@ -1,5 +1,4 @@
-@startuml ClassDiagramManageStoreChain
-
+@startuml
 ' skinparam Linetype ortho
 
 User <|-d- Customer 
@@ -25,7 +24,7 @@ class Store {
   - storeName: String
   - address: String
   - phone: String
-  - productId: String
+  - product: Product[]
 }
 
 class Product {
@@ -90,5 +89,4 @@ class Staff {
   - staffName: String
   - salary: double
 }
-
 @enduml
