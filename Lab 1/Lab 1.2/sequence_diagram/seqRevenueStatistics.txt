@@ -1,0 +1,15 @@
+@startuml
+
+actor Admin
+boundary RevenueStatisticsView
+control RevenueStatisticsControl
+entity SalesData
+
+Admin -> RevenueStatisticsView: 1. Open "Revenue Statistics" page
+RevenueStatisticsView -> RevenueStatisticsControl: 2. Request revenue statistics data
+RevenueStatisticsControl -> SalesData: 3. Retrieve sales data
+RevenueStatisticsControl -> RevenueStatisticsControl: 4. Process revenue statistics
+RevenueStatisticsControl -> RevenueStatisticsView: 5. Return processed statistics
+RevenueStatisticsView -> RevenueStatisticsView: 6. Display revenue statistics
+
+@enduml
