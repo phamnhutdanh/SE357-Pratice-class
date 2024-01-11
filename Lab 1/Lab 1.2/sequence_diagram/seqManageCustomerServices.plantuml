@@ -1,0 +1,40 @@
+@startuml 
+actor Admin 
+boundary CustomerServicesView 
+boundary CustomerView 
+control CustomerServicesControl
+entity DB 
+
+activate CustomerServicesView 
+Admin -> CustomerServicesView: Click on Manage Customer Service View
+CustomerServicesView -> CustomerServicesControl : Get list of message from customers
+activate CustomerServicesControl 
+CustomerServicesControl -> DB: Get list of message from customers
+deactivate CustomerServicesControl
+activate DB
+DB --> CustomerServicesView: Return list of message from customers
+deactivate DB
+CustomerServicesView -> CustomerServicesView: Display list of message from customer
+activate CustomerServicesView 
+deactivate CustomerServicesView 
+
+Admin -> CustomerServicesView: Choose an message to reply
+CustomerServicesView -> CustomerServicesView: Display form to enter message
+activate CustomerServicesView
+Admin-> CustomerServicesView : Enter form
+CustomerServicesView -> CustomerServicesControl: Request send message to customer
+activate CustomerServicesControl    
+ 
+CustomerServicesControl -> DB: Request send message to customer
+deactivate CustomerServicesControl
+activate DB
+DB--> CustomerServicesControl : Response message
+deactivate DB
+activate CustomerServicesControl
+
+CustomerServicesControl --> CustomerView: Send message to user
+CustomerServicesControl --> CustomerServicesView: Send message successful
+
+deactivate CustomerServicesView
+
+@enduml

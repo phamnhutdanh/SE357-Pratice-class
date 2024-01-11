@@ -1,0 +1,40 @@
+@startuml 
+actor Admin 
+boundary ManageDiscountView 
+boundary CustomerView 
+control ManageDiscountControl
+entity DB 
+
+activate ManageDiscountView 
+Admin -> ManageDiscountView: Click on Manage Discount
+ManageDiscountView -> ManageDiscountControl : Get list of product discount
+activate ManageDiscountControl 
+ManageDiscountControl -> DB: Get list of product discount
+deactivate ManageDiscountControl
+activate DB
+DB --> ManageDiscountView: Return list of product discount
+deactivate DB
+ManageDiscountView -> ManageDiscountView: Display list of product discount
+activate ManageDiscountView 
+deactivate ManageDiscountView 
+
+Admin -> ManageDiscountView: Choose a product to add/update discount
+ManageDiscountView -> ManageDiscountView: Display form to enter discount
+activate ManageDiscountView
+Admin-> ManageDiscountView : Enter form
+ManageDiscountView -> ManageDiscountControl: Create/update new discount information
+activate ManageDiscountControl    
+ 
+ManageDiscountControl -> DB: Create/update new discount information
+deactivate ManageDiscountControl
+activate DB
+DB--> ManageDiscountControl : Response message
+deactivate DB
+activate ManageDiscountControl
+
+ManageDiscountControl --> CustomerView: Send message to user
+ManageDiscountControl --> ManageDiscountView: Send message successful
+
+deactivate ManageDiscountView
+
+@enduml

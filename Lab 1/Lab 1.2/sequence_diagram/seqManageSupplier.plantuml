@@ -1,0 +1,42 @@
+@startuml 
+actor Admin 
+boundary AccountManageView 
+control AccountControl
+entity DB 
+
+activate AccountManageView 
+Admin -> AccountManageView: Click on supplier account
+AccountManageView -> AccountControl: Get info account details
+activate AccountControl
+AccountControl -> DB: Get info account details
+deactivate AccountControl
+activate DB
+
+DB --> AccountControl: Return account info
+deactivate DB
+activate AccountControl
+
+AccountControl --> AccountManageView: Return account info
+deactivate AccountControl
+
+AccountManageView -> AccountManageView: Display Account details
+AccountManageView -> AccountManageView: Display Supplier's product
+
+    Admin -> AccountManageView: Click on update button
+    AccountManageView -> AccountManageView: Display form to enter edit account
+    activate AccountManageView
+    Admin-> AccountManageView : Enter form
+    AccountManageView -> AccountControl: Request to update account
+    activate AccountControl    
+    AccountControl -> AccountControl: Validate input
+    activate AccountControl
+    AccountControl -> DB: Update account object
+    activate DB
+    deactivate AccountControl
+    DB--> AccountControl : Notify success/failure
+    deactivate DB
+    AccountControl --> AccountManageView: Notify success/failure
+      deactivate AccountManageView
+    deactivate AccountControl
+
+@enduml

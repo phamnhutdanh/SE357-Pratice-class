@@ -1,18 +1,18 @@
-@startuml
+@startuml 
 actor Admin 
 boundary AccountManageView 
 control AccountControl
-entity Account 
+entity DB 
 
 Admin -> AccountManageView: Open Account Management View
 activate AccountManageView 
 AccountManageView -> AccountControl : Get list of Accounts
 activate AccountControl 
-AccountControl -> Account: Get list of Accounts
+AccountControl -> DB: Get list of Accounts
 deactivate AccountControl
-activate Account
-Account --> AccountManageView: Return list of Accounts
-deactivate Account
+activate DB
+DB --> AccountManageView: Return list of Accounts
+deactivate DB
 AccountManageView -> AccountManageView: Display list of Accounts
 activate AccountManageView 
 deactivate AccountManageView 
@@ -27,11 +27,11 @@ opt InsertNewAccount:
     deactivate AccountManageView
     AccountControl -> AccountControl: Validate input and Generate account ID
     activate AccountControl
-    AccountControl -> Account: Create new account object
-    activate Account
+    AccountControl -> DB: Create new account object
+    activate DB
     deactivate AccountControl
-    Account--> AccountControl : Notify success/failure
-    deactivate Account
+    DB--> AccountControl : Notify success/failure
+    deactivate DB
     AccountControl --> AccountManageView: Notify success/failure
     deactivate AccountControl
 end   
@@ -47,11 +47,11 @@ opt UpdateAccount:
     deactivate AccountManageView
     AccountControl -> AccountControl: Validate input
     activate AccountControl
-    AccountControl -> Account: Update account object
-    activate Account
+    AccountControl -> DB: Update account object
+    activate DB
     deactivate AccountControl
-    Account--> AccountControl : Notify success/failure
-    deactivate Account
+    DB--> AccountControl : Notify success/failure
+    deactivate DB
     AccountControl --> AccountManageView: Notify success/failure
     deactivate AccountControl
 end  
@@ -63,11 +63,11 @@ opt DeleteAccount:
     activate AccountControl    
     Admin -> AccountControl: Confirm delete
     activate AccountControl
-    AccountControl -> Account: Delete account object
-    activate Account
+    AccountControl -> DB: Delete account object
+    activate DB
     deactivate AccountControl
-    Account--> AccountControl : Notify success/failure
-    deactivate Account
+    DB--> AccountControl : Notify success/failure
+    deactivate DB
     AccountControl --> AccountManageView: Notify success/failure
     deactivate AccountControl
 end  

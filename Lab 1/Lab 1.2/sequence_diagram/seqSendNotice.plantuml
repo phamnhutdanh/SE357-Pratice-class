@@ -7,7 +7,7 @@ entity DB
 
 Admin -> AccountManageView: Open Account Management View
 activate AccountManageView 
-AccountManageView -> AccountControl : Get list of Accounts
+AccountManageView -> AccountControl: Get list of Accounts
 activate AccountControl 
 AccountControl -> DB: Get list of Accounts
 deactivate AccountControl
@@ -34,26 +34,22 @@ AccountControl --> AccountManageView: Return account info
 deactivate AccountControl
 
 AccountManageView -> AccountManageView: Display Account details
-Admin -> AccountManageView: Click on "Ban Button"
-AccountManageView -> AccountManageView: Display confirm dialog
+Admin -> AccountManageView: Click on "Send notice"
+AccountManageView -> AccountManageView: Display input form
 activate AccountManageView
 
-alt Click "Yes" Button
-    Admin -> AccountManageView: Click Yes
-    AccountManageView -> AccountControl: Send message to Control
-    activate AccountControl
-    AccountControl -> DB: Ban account
-    deactivate AccountControl
-    activate DB
-    DB --> AccountControl: Successful message
-    deactivate DB
-    activate AccountControl
-    AccountControl --> AccountManageView: Successful message
-    AccountControl --> UserAccountView: Notify to user account
-    deactivate AccountControl
-else Click "No" Button
-    AccountManageView -> AccountManageView: Show notification
-end
+Admin -> AccountManageView: Enter form
+AccountManageView -> AccountControl: Send message to Control
+activate AccountControl
+AccountControl -> DB: Send notice
+deactivate AccountControl
+activate DB
+DB --> AccountControl: Successful message
+deactivate DB
+activate AccountControl
+AccountControl --> AccountManageView: Successful message
+AccountControl --> UserAccountView: Notify to user account
+deactivate AccountControl
 
 deactivate AccountManageView
 

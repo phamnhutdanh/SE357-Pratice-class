@@ -3,13 +3,28 @@
 actor Admin
 boundary RevenueStatisticsView
 control RevenueStatisticsControl
-entity SalesData
+entity DB
 
-Admin -> RevenueStatisticsView: 1. Open "Revenue Statistics" page
-RevenueStatisticsView -> RevenueStatisticsControl: 2. Request revenue statistics data
-RevenueStatisticsControl -> SalesData: 3. Retrieve sales data
-RevenueStatisticsControl -> RevenueStatisticsControl: 4. Process revenue statistics
-RevenueStatisticsControl -> RevenueStatisticsView: 5. Return processed statistics
-RevenueStatisticsView -> RevenueStatisticsView: 6. Display revenue statistics
+Admin -> RevenueStatisticsView: Open "Revenue Statistics" page
+activate RevenueStatisticsView
+Admin -> RevenueStatisticsView: Choose type of report want to display
+RevenueStatisticsView -> RevenueStatisticsControl: Request revenue statistics data
+activate RevenueStatisticsControl
+RevenueStatisticsView -> RevenueStatisticsView: Display loading
+
+
+RevenueStatisticsControl -> DB: Retrieve data
+activate DB
+deactivate RevenueStatisticsControl
+
+DB --> RevenueStatisticsControl: Return data
+activate RevenueStatisticsControl
+deactivate DB
+
+RevenueStatisticsControl -> RevenueStatisticsControl: Process revenue statistics
+RevenueStatisticsControl -> RevenueStatisticsView: Return processed statistics
+deactivate RevenueStatisticsControl
+
+RevenueStatisticsView -> RevenueStatisticsView: Display revenue statistics
 
 @enduml

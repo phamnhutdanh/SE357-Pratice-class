@@ -1,0 +1,32 @@
+@startuml
+
+actor Admin
+boundary AccountManageView
+control AccountControl
+entity DB
+
+Admin -> AccountManageView: Open Account Management View
+activate AccountManageView 
+
+Admin -> AccountManageView: Click "Create Account" button and Choose "Create Shop Account"
+ AccountManageView -> AccountManageView: Display form to enter account details
+    activate AccountManageView
+    Admin-> AccountManageView : Enter form
+    AccountManageView -> AccountControl: Request to insert new account
+    activate AccountControl    
+    deactivate AccountManageView
+    AccountControl -> AccountControl: Validate input and Generate account ID
+
+    alt Valid Information
+    AccountControl -> DB: Create new account
+    activate DB
+    DB--> AccountControl : Notify success
+    deactivate DB
+    AccountControl --> AccountManageView: Notify success
+else Invalid Information
+    AccountControl --> AccountManageView: Notify account creation failure
+    AccountControl --> AccountManageView: Display error message
+    AccountControl --> AccountManageView: Notify failure
+end
+
+@enduml
