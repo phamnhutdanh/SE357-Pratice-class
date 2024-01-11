@@ -1,0 +1,90 @@
+@startuml
+actor Admin 
+boundary AccountManageView 
+control AccountControl
+entity Account 
+
+Admin -> AccountManageView: Open Account Management View
+activate AccountManageView 
+AccountManageView -> AccountControl : Get list of Accounts
+activate AccountControl 
+AccountControl -> Account: Get list of Accounts
+deactivate AccountControl
+activate Account
+Account --> AccountManageView: Return list of Accounts
+deactivate Account
+AccountManageView -> AccountManageView: Display list of Accounts
+activate AccountManageView 
+deactivate AccountManageView 
+
+opt InsertNewAccount:
+    Admin -> AccountManageView: Choose Insert Action
+    AccountManageView -> AccountManageView: Display form to enter account details
+    activate AccountManageView
+    Admin-> AccountManageView : Enter form
+    AccountManageView -> AccountControl: Request to insert new account
+    activate AccountControl    
+    deactivate AccountManageView
+    AccountControl -> AccountControl: Validate input and Generate account ID
+    activate AccountControl
+    AccountControl -> Account: Create new account object
+    activate Account
+    deactivate AccountControl
+    Account--> AccountControl : Notify success/failure
+    deactivate Account
+    AccountControl --> AccountManageView: Notify success/failure
+    deactivate AccountControl
+end   
+
+opt UpdateAccount:
+    Admin -> AccountManageView: Choose Update Action
+    Admin -> AccountManageView: Select account to update
+    AccountManageView -> AccountManageView: Display form to enter edit account
+    activate AccountManageView
+    Admin-> AccountManageView : Enter form
+    AccountManageView -> AccountControl: Request to update new account
+    activate AccountControl    
+    deactivate AccountManageView
+    AccountControl -> AccountControl: Validate input
+    activate AccountControl
+    AccountControl -> Account: Update account object
+    activate Account
+    deactivate AccountControl
+    Account--> AccountControl : Notify success/failure
+    deactivate Account
+    AccountControl --> AccountManageView: Notify success/failure
+    deactivate AccountControl
+end  
+
+opt DeleteAccount:
+    Admin -> AccountManageView: Choose Delete Action
+    Admin -> AccountManageView: Select account to delete
+    AccountManageView -> AccountControl: Request to delete account
+    activate AccountControl    
+    Admin -> AccountControl: Confirm delete
+    activate AccountControl
+    AccountControl -> Account: Delete account object
+    activate Account
+    deactivate AccountControl
+    Account--> AccountControl : Notify success/failure
+    deactivate Account
+    AccountControl --> AccountManageView: Notify success/failure
+    deactivate AccountControl
+end  
+
+opt SearchAccount:
+    Admin -> AccountManageView: Choose Search Action
+    AccountManageView -> AccountManageView: Display search interface
+    activate AccountManageView 
+    Admin -> AccountManageView: Enter search criteria
+    AccountManageView -> AccountControl: Request to search accounts
+    activate AccountControl
+    AccountControl -> AccountControl: Validate search criteria
+    AccountControl -> AccountControl: Search accounts
+    AccountControl --> AccountManageView: Return search results
+    deactivate AccountControl
+    AccountManageView -> AccountManageView: Display search results
+    deactivate AccountManageView 
+end
+   deactivate AccountManageView 
+@enduml
