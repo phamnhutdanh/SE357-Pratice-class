@@ -1,0 +1,16 @@
+@startuml
+|Customer|
+start
+:Click on an item payment;
+:Click on "Delete" button;
+|System|
+:Load confirm dialog;
+|Customer|
+if (Accept?) then (Yes)
+|System|
+:Delete item payment;
+else (No)
+|System|
+endif
+stop
+@enduml

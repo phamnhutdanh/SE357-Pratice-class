@@ -1,0 +1,57 @@
+@startuml
+
+actor ShopOwner 
+boundary StaffManageView 
+boundary StaffDetailsView 
+control StaffControl
+entity DB 
+
+ShopOwner -> StaffManageView: Open Staff Management View
+activate StaffManageView 
+StaffManageView -> StaffControl : Get list of Staffs
+activate StaffControl 
+StaffControl -> DB: Get list of Staffs
+deactivate StaffControl
+activate DB
+DB --> StaffManageView: Return list of Staffs
+deactivate DB
+StaffManageView -> StaffManageView: Display list of Staffs
+
+ShopOwner -> StaffManageView: Click on an staff info
+StaffManageView -> StaffControl: Get staff info details
+deactivate StaffManageView
+activate StaffControl
+StaffControl -> DB: Get staff info details
+deactivate StaffControl
+activate DB
+
+DB --> StaffControl: Return staff info 
+deactivate DB
+activate StaffControl
+
+StaffControl --> StaffDetailsView: Return staff info 
+deactivate StaffControl
+
+activate StaffDetailsView
+StaffDetailsView -> StaffDetailsView: Display staff info details
+activate StaffDetailsView
+
+
+    ShopOwner -> StaffDetailsView: Click on update salary
+    StaffDetailsView -> StaffDetailsView: Display form to enter info
+    activate StaffDetailsView
+    ShopOwner-> StaffDetailsView : Enter form
+    StaffDetailsView -> StaffControl: Request to update new staff salary
+    activate StaffControl    
+    deactivate StaffDetailsView
+    StaffControl -> StaffControl: Validate input
+    activate StaffControl
+    StaffControl -> DB: Update staff salary
+    activate DB
+    deactivate StaffControl
+    DB--> StaffControl : Notify success/failure
+    deactivate DB
+    StaffControl --> StaffDetailsView: Notify success/failure
+    deactivate StaffControl
+
+@enduml

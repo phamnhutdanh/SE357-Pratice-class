@@ -1,0 +1,16 @@
+@startuml
+|ShopOwner|
+start
+:Click on an item staff information;
+:Click on "Delete" button;
+|System|
+:Load confirm dialog;
+|Shop|
+if (Accept?) then (Yes)
+|System|
+:Delete item staff information;
+else (No)
+|System|
+endif
+stop
+@enduml

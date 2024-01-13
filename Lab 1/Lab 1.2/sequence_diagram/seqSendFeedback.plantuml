@@ -1,0 +1,29 @@
+@startuml
+actor Customer 
+boundary CustomerAccountView 
+boundary AdminAccountView
+control AccountControl
+entity DB 
+
+activate CustomerAccountView
+Customer -> CustomerAccountView: Click on "Send feedback"
+
+CustomerAccountView -> CustomerAccountView: Display input form
+activate CustomerAccountView
+
+Customer -> CustomerAccountView: Enter form
+CustomerAccountView -> AccountControl: Send message to Control
+activate AccountControl
+AccountControl -> DB: Send feedback
+deactivate AccountControl
+activate DB
+DB --> AccountControl: Successful message
+deactivate DB
+activate AccountControl
+AccountControl --> CustomerAccountView: Successful message
+AccountControl --> AdminAccountView: Notify to admin
+deactivate AccountControl
+
+deactivate CustomerAccountView
+
+@enduml

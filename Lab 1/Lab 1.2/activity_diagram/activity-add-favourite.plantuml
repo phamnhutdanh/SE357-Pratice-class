@@ -1,0 +1,8 @@
+@startuml
+|Customer|
+start
+:Click on an product;
+:Click "Add to favourite" button;
+|System|
+stop
+@enduml

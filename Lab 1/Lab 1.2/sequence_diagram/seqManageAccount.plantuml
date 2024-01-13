@@ -59,15 +59,20 @@ end
 opt DeleteAccount:
     Admin -> AccountManageView: Choose Delete Action
     Admin -> AccountManageView: Select account to delete
+    AccountManageView -> AccountManageView: Display confirm dialog
+    activate AccountManageView
+    Admin -> AccountManageView: Confirm delete
+    
     AccountManageView -> AccountControl: Request to delete account
+    deactivate AccountManageView
     activate AccountControl    
-    Admin -> AccountControl: Confirm delete
-    activate AccountControl
+
     AccountControl -> DB: Delete account object
-    activate DB
     deactivate AccountControl
+    activate DB
     DB--> AccountControl : Notify success/failure
     deactivate DB
+    activate AccountControl
     AccountControl --> AccountManageView: Notify success/failure
     deactivate AccountControl
 end  

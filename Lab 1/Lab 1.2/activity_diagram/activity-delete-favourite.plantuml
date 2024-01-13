@@ -1,0 +1,16 @@
+@startuml
+|Customer|
+start
+:Click on an item favourite;
+:Click on "Remove favourite" button;
+|System|
+:Load confirm dialog;
+|Customer|
+if (Accept?) then (Yes)
+|System|
+:Delete item favourite;
+else (No)
+|System|
+endif
+stop
+@enduml

@@ -1,0 +1,59 @@
+@startuml 
+actor Customer 
+boundary CartManageView 
+control CartManageControl
+entity DB 
+
+Customer -> CartManageView: Open Cart Management View
+activate CartManageView 
+CartManageView -> CartManageControl : Get list of item Cart
+activate CartManageControl 
+CartManageControl -> DB: Get list of item Cart
+deactivate CartManageControl
+activate DB
+DB --> CartManageView: Return list of item Cart
+deactivate DB
+CartManageView -> CartManageView: Display list of item Cart
+activate CartManageView 
+deactivate CartManageView 
+
+opt UpdateItemCart:
+    Customer -> CartManageView: Choose Update Action
+    Customer -> CartManageView: Select item to update amount
+
+    Customer-> CartManageView : Click on [-] or [+] button
+    CartManageView -> CartManageControl: Request to update item cart
+    activate CartManageControl    
+
+    CartManageControl -> DB: Update item cart
+    activate DB
+
+    DB--> CartManageControl : Notify success/failure
+    deactivate DB
+    CartManageControl --> CartManageView: Notify success/failure
+    deactivate CartManageControl
+end  
+
+opt DeleteItemCart:
+    Customer -> CartManageView: Choose Delete Action
+    Customer -> CartManageView: Select item to delete
+    CartManageView -> CartManageView: Display confirm dialog
+    activate CartManageView
+    Customer -> CartManageView: Confirm delete
+    
+    CartManageView -> CartManageControl: Request to delete item
+    deactivate CartManageView
+    activate CartManageControl    
+
+    CartManageControl -> DB: Delete item object
+    deactivate CartManageControl
+    activate DB
+    DB--> CartManageControl : Notify success/failure
+    deactivate DB
+    activate CartManageControl
+    CartManageControl --> CartManageView: Notify success/failure
+    deactivate CartManageControl
+end  
+
+   deactivate CartManageView 
+@enduml

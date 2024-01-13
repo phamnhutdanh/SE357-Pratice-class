@@ -1,0 +1,15 @@
+@startuml
+|ShopOwner|
+start
+:Click on "Add staff information" button;
+:Fill information;
+|System|
+:Validate info;
+if (Valid?) then (Yes)
+|System|
+:Add staff information method;
+else (No)
+|System|
+endif
+stop
+@enduml

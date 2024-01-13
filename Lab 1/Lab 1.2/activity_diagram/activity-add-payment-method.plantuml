@@ -1,0 +1,15 @@
+@startuml
+|Customer|
+start
+:Click on "Add payment method" button;
+:Fill information;
+|System|
+:Validate payment info;
+if (Valid?) then (Yes)
+|System|
+:Add payment method;
+else (No)
+|System|
+endif
+stop
+@enduml

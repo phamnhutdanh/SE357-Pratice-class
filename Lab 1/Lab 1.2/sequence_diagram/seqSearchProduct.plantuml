@@ -1,0 +1,23 @@
+@startuml
+actor Customer 
+boundary SearchProductView 
+control SearchProductControl
+
+activate SearchProductView
+Customer -> SearchProductView: Click on search button
+Customer -> SearchProductView: Enter search text
+
+SearchProductView -> SearchProductControl: Search item
+activate SearchProductControl
+
+alt Item found
+    SearchProductControl --> SearchProductView: Return item product
+    SearchProductView -> SearchProductView: Display item
+else Item not found
+    SearchProductControl --> SearchProductView: Return message
+    SearchProductView -> SearchProductView: Display message
+end
+
+deactivate SearchProductView
+
+@enduml

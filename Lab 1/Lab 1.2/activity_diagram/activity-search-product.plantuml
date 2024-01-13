@@ -1,12 +1,13 @@
 @startuml
 |Customer|
 start
-:Click on search/filter button;
+:Click on search button;
+:Enter search text;
 |System|
 
 repeat :Search item;
 backward:Not found;
-repeat while (Found?)
+repeat while (Is Found?)
 :Display item product;
 stop
 @enduml

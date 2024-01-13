@@ -1,0 +1,13 @@
+@startuml
+|Customer|
+start
+:Click on an item payment;
+:Enter new information;
+|System|
+if (Validate information) then (Valid)
+:Update payment method;
+else (Not valid)
+:Show error message;
+endif
+stop
+@enduml

@@ -2,63 +2,94 @@
 
 actor ShopOwner 
 boundary StaffManageView 
+boundary StaffDetailsView 
 control StaffControl
-entity Staff 
+entity DB 
 
-StaffControl -> Staff: 1. Get list of Staffs
-StaffManageView -> StaffManageView: 2. Display list of Staffs
-ShopOwner -> StaffManageView: 3. Choose action
+ShopOwner -> StaffManageView: Open Staff Management View
+activate StaffManageView 
+StaffManageView -> StaffControl : Get list of Staffs
+activate StaffControl 
+StaffControl -> DB: Get list of Staffs
+deactivate StaffControl
+activate DB
+DB --> StaffManageView: Return list of Staffs
+deactivate DB
+StaffManageView -> StaffManageView: Display list of Staffs
+activate StaffManageView 
+deactivate StaffManageView 
 
-opt InsertNewStaff:
-    ShopOwner -> StaffManageView: Open Staff Management View
-    StaffManageView -> StaffManageView: Display form to enter staff details
-    ShopOwner -> StaffControl: Request to insert new staff
+opt InsertNewStaff
+    ShopOwner -> StaffManageView: Click on "Add staff" button
+    StaffManageView -> StaffManageView: Display form to enter staff info
+    activate StaffManageView
+    ShopOwner -> StaffManageView : Enter form
+    StaffManageView -> StaffControl: Request to add new staff
+    activate StaffControl    
+    deactivate StaffManageView
     StaffControl -> StaffControl: Validate input
-    StaffControl -> StaffControl: Generate staff ID
-    StaffControl -> Staff: Create new staff object
-    StaffControl -> Staff: Set staff details
-    StaffControl -> StaffControl: Save staff to database
-    StaffControl --> ShopOwner: Notify success/failure
+    activate StaffControl
+    StaffControl -> DB: Create new staff information
+    activate DB
+    deactivate StaffControl
+    DB--> StaffControl : Notify success/failure
+    deactivate DB
+    StaffControl --> StaffManageView: Notify success/failure
+    deactivate StaffControl
 end   
 
-opt UpdateStaff:
-    ShopOwner -> StaffManageView: Open Staff Management View
-    StaffManageView -> StaffManageView: Display list of accounts
-    ShopOwner -> StaffManageView: Select staff to update
-    StaffManageView -> StaffControl: Request to update staff
+opt UpdateStaff
+    ShopOwner -> StaffManageView: Select staff info to update
+    StaffManageView -> StaffManageView: Display form to enter info
+    activate StaffManageView
+    ShopOwner-> StaffManageView : Enter form
+    StaffManageView -> StaffControl: Request to update new staff info
+    activate StaffControl    
+    deactivate StaffManageView
     StaffControl -> StaffControl: Validate input
-    StaffControl -> Staff: Retrieve existing staff details
-    StaffControl -> StaffManageView: Display staff details for editing
-    ShopOwner -> StaffControl: Modify staff details
-    StaffControl -> StaffControl: Validate modified input
-    StaffControl -> Staff: Update staff details
-    StaffControl -> StaffControl: Save updated staff to database
-    StaffControl --> ShopOwner: Notify success/failure
+    activate StaffControl
+    StaffControl -> DB: Update staff info
+    activate DB
+    deactivate StaffControl
+    DB--> StaffControl : Notify success/failure
+    deactivate DB
+    StaffControl --> StaffManageView: Notify success/failure
+    deactivate StaffControl
 end  
 
-opt DeleteStaff:
-    ShopOwner -> StaffManageView: Open Staff Management View
-    StaffManageView -> StaffManageView: Display list of accounts
-    ShopOwner -> StaffManageView: Select staff to delete
-    StaffManageView -> StaffControl: Request to delete staff
-    StaffControl -> StaffControl: Confirm staff deletion
-    StaffControl -> Staff: Retrieve staff details for confirmation
-    StaffControl -> StaffManageView: Display staff details for confirmation
-    ShopOwner -> StaffControl: Confirm staff deletion
-    StaffControl -> StaffControl: Delete staff
-    StaffControl -> StaffControl: Save updated staff list to database
-    StaffControl --> ShopOwner: Notify success/failure
+opt DeleteStaff
+    ShopOwner -> StaffManageView: Select staff info to delete
+    StaffManageView -> StaffManageView: Display confirm dialog
+    activate StaffManageView
+    ShopOwner -> StaffManageView: Confirm delete
+    
+    StaffManageView -> StaffControl: Request to delete staff info
+    deactivate StaffManageView
+    activate StaffControl    
+
+    StaffControl -> DB: Delete staff info
+    deactivate StaffControl
+    activate DB
+    DB--> StaffControl : Notify success/failure
+    deactivate DB
+    activate StaffControl
+    StaffControl --> StaffManageView: Notify success/failure
+    deactivate StaffControl
 end  
 
-opt SearchStaff:
-    ShopOwner -> StaffManageView: Open Staff Management View
+opt SearchStaff
+    ShopOwner -> StaffManageView: Choose Search Action
     StaffManageView -> StaffManageView: Display search interface
+    activate StaffManageView 
     ShopOwner -> StaffManageView: Enter search criteria
-    StaffManageView -> StaffControl: Request to search accounts
+    StaffManageView -> StaffControl: Request to search staff info
+    activate StaffControl
     StaffControl -> StaffControl: Validate search criteria
-    StaffControl -> StaffControl: Search accounts in the database
+    StaffControl -> StaffControl: Search staff info
     StaffControl --> StaffManageView: Return search results
+    deactivate StaffControl
     StaffManageView -> StaffManageView: Display search results
+    deactivate StaffManageView 
 end  
 
 

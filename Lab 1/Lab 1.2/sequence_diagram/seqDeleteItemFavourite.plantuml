@@ -1,0 +1,40 @@
+@startuml 
+actor Customer 
+boundary FavouriteManageView 
+control FavouriteManageControl
+entity DB 
+
+Customer -> FavouriteManageView: Open Favourite Product Management View
+activate FavouriteManageView 
+FavouriteManageView -> FavouriteManageControl : Get list of item favourite product
+activate FavouriteManageControl 
+FavouriteManageControl -> DB: Get list of item favourite product
+deactivate FavouriteManageControl
+activate DB
+DB --> FavouriteManageView: Return list of item favourite product
+deactivate DB
+FavouriteManageView -> FavouriteManageView: Display list of item favourite product
+activate FavouriteManageView 
+deactivate FavouriteManageView 
+
+    Customer -> FavouriteManageView: Select item to delete
+    FavouriteManageView -> FavouriteManageView: Display confirm dialog
+    activate FavouriteManageView
+    Customer -> FavouriteManageView: Confirm delete
+    
+    FavouriteManageView -> FavouriteManageControl: Request to delete item
+    deactivate FavouriteManageView
+    activate FavouriteManageControl    
+
+    FavouriteManageControl -> DB: Delete item object
+    deactivate FavouriteManageControl
+    activate DB
+    DB--> FavouriteManageControl : Notify success/failure
+    deactivate DB
+    activate FavouriteManageControl
+    FavouriteManageControl --> FavouriteManageView: Notify success/failure
+    deactivate FavouriteManageControl
+
+
+   deactivate FavouriteManageView 
+@enduml

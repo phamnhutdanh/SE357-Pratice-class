@@ -1,0 +1,13 @@
+@startuml
+|ShopOwner|
+start
+:Click on an item staff information;
+:Enter new information;
+|System|
+if (Validate information) then (Valid)
+:Update staff information;
+else (Not valid)
+:Show error message;
+endif
+stop
+@enduml

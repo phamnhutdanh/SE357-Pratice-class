@@ -1,0 +1,54 @@
+@startuml 
+actor Customer 
+boundary ListProductView 
+boundary ProductDetailView 
+control ProductControl
+entity DB 
+
+Customer -> ListProductView: Open List Product View
+activate ListProductView 
+ListProductView -> ProductControl : Get list of products
+activate ProductControl 
+ProductControl -> DB: Get list of products
+deactivate ProductControl
+activate DB
+DB --> ListProductView: Return list of products
+deactivate DB
+ListProductView -> ListProductView: Display list of products
+activate ListProductView 
+deactivate ListProductView 
+
+Customer -> ListProductView: Click on an product
+ListProductView -> ProductControl: Get info product details
+deactivate ListProductView
+activate ProductControl
+ProductControl -> DB: Get info product details
+deactivate ProductControl
+activate DB
+
+DB --> ProductControl: Return product info
+deactivate DB
+activate ProductControl
+
+ProductControl --> ProductDetailView: Return product info
+deactivate ProductControl
+
+activate ProductDetailView
+ProductDetailView -> ProductDetailView: Display product details
+activate ProductDetailView
+deactivate ProductDetailView
+Customer -> ProductDetailView: Click on "Add to cart" button
+
+ProductDetailView -> ProductControl: Request to add product to cart
+activate ProductControl    
+
+ProductControl -> DB: Add product to cart
+deactivate ProductControl
+activate DB
+
+DB--> ProductControl : Notify success/failure
+deactivate DB
+activate ProductControl
+ProductControl --> ProductDetailView: Notify success/failure
+deactivate ProductControl
+@enduml

@@ -1,11 +1,11 @@
 @startuml
-|Shop's owner|
+|ShopOwner|
 start
 :Click on an staff information;
 :Click on "Update salary" button;
 |System|
 :Load input form;
-|Shop's owner|
+|ShopOwner|
 :Enter value;
 |System|
 if (Validate) then (Valid)

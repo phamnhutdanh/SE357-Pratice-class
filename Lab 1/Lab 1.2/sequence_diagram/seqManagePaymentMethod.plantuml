@@ -1,0 +1,76 @@
+@startuml 
+actor Customer 
+boundary AccountView 
+control AccountControl
+entity DB 
+
+Customer -> AccountView: Open Account View
+activate AccountView 
+
+Customer -> AccountView: Click on payment method button
+AccountView -> AccountView: Display payment method tab
+activate AccountView 
+deactivate AccountView
+
+opt AddNewPaymentMethod:
+    Customer -> AccountView: Choose Add Payment Method Action
+    AccountView -> AccountView: Display form to enter info details
+    activate AccountView
+    Customer-> AccountView : Enter form
+    AccountView -> AccountControl: Request to add new payment method
+    activate AccountControl    
+    deactivate AccountView
+    AccountControl -> AccountControl: Validate input
+    activate AccountControl
+    AccountControl -> DB: Create new payment method object
+    deactivate AccountControl
+    activate DB
+    DB--> AccountControl : Notify success/failure
+    deactivate DB
+    AccountControl --> AccountView: Notify success/failure
+    deactivate AccountControl
+end   
+
+opt UpdatePaymentMethod:
+    Customer -> AccountView: Choose Update Action
+    Customer -> AccountView: Select payment method to update
+    AccountView -> AccountView: Display form to enter info details
+    activate AccountView
+    Customer-> AccountView : Enter form
+    AccountView -> AccountControl: Request to update new payment method
+    activate AccountControl    
+    deactivate AccountView
+    AccountControl -> AccountControl: Validate input
+    activate AccountControl
+    AccountControl -> DB: Update payment method object
+    activate DB
+    deactivate AccountControl
+    DB--> AccountControl : Notify success/failure
+    deactivate DB
+    AccountControl --> AccountView: Notify success/failure
+    deactivate AccountControl
+end  
+
+opt DeletePaymentMethod:
+    Customer -> AccountView: Choose Delete Action
+    Customer -> AccountView: Select payment method to delete
+    AccountView -> AccountView: Display confirm dialog
+    activate AccountView
+    Customer -> AccountView: Confirm delete
+    
+    AccountView -> AccountControl: Request to delete payment method
+    deactivate AccountView
+    activate AccountControl    
+
+    AccountControl -> DB: Delete payment method object
+    deactivate AccountControl
+    activate DB
+    DB--> AccountControl : Notify success/failure
+    deactivate DB
+    activate AccountControl
+    AccountControl --> AccountView: Notify success/failure
+    deactivate AccountControl
+end  
+
+   deactivate AccountView 
+@enduml

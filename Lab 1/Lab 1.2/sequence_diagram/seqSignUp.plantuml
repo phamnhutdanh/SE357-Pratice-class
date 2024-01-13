@@ -3,33 +3,40 @@
 actor Customer 
 boundary SignUpView 
 control SignUpControl
-entity Account
+entity DB
 
-SignUpView -> SignUpView: 1. Display Sign Up View
-Customer -> SignUpView: 2. Click "Sign Up" button
-SignUpView -> SignUpView: 3. Load Sign Up Form
-Customer -> SignUpView: 4. Enter customer's information included username and password
-Customer -> SignUpView: 5. Click "Confirm" button
-SignUpView -> SignUpView : 6. Display validate format
+activate SignUpView
+Customer -> SignUpView: Click "Sign Up" button
 
-alt Invalid Data
-    SignUpView -> SignUpView : 7. Display error notification
+SignUpView -> SignUpView: Display form to enter account details
+activate SignUpView
+Customer-> SignUpView : Enter customer's information included username and password
+SignUpView -> SignUpControl: Request to insert new account
+activate SignUpControl    
+deactivate SignUpView
+SignUpControl -> SignUpControl: Check validate input
+activate SignUpControl
 
-else Valid Data
-    SignUpView -> SignUpControl: 8. Send username and password
-    SignUpControl -> Account: 9. Send username and password
-    Account -> Account: 10. Validate information
+alt Invalid Input
+    SignUpControl --> SignUpView : Send error message
+    SignUpView -> SignUpView : Display error notification
+    activate SignUpView
+    deactivate SignUpView
+else Valid Input
+    SignUpView -> SignUpControl: Send username and password
+    SignUpControl -> DB: Send username and password
+    activate DB
+    DB -> DB: Check validate information
+    activate DB
+    deactivate DB
 
     alt Invalid Information
-        Account --> SignUpControl: 11. Error notification
-        SignUpControl -> SignUpView: 12. Display error notification
+        DB --> SignUpControl: Send error message
+        SignUpControl --> SignUpView: Display error notification
 
     else Valid Information
-        Account --> SignUpControl: 13. Successful message
-        SignUpControl -> SignUpView: 14. Successful notification
+        DB --> SignUpControl: Send successful message
+        SignUpControl --> SignUpView: Successful notification
     end
-
 end
-
-
 @enduml

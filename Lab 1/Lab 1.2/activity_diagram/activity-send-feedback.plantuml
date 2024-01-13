@@ -1,0 +1,12 @@
+@startuml
+|Admin|
+start
+:Click "Send feedback";
+:Enter message;
+|System|
+if (Message sent?) then (Yes)
+else (No)
+:Show error message;
+endif
+stop
+@enduml

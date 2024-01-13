@@ -1,0 +1,8 @@
+@startuml
+|Customer|
+start
+:Click on an product;
+|System|
+:Load product details;
+stop
+@enduml
